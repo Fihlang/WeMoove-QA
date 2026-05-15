@@ -1,0 +1,63 @@
+{
+  "name": "wemoove-e2e",
+  "version": "1.0.0",
+  "description": "FurnMovers Trust (WeMoove-Web) — Playwright + Cucumber BDD + Allure E2E Test Framework",
+  "private": true,
+  "scripts": {
+    "test": "cucumber-js",
+    "test:smoke": "cucumber-js --tags @smoke",
+    "test:regression": "cucumber-js --tags @regression",
+    "test:auth": "cucumber-js --tags @auth",
+    "test:delivery": "cucumber-js --tags @delivery",
+    "test:evidence": "cucumber-js --tags @evidence",
+    "test:disputes": "cucumber-js --tags @dispute",
+    "test:public": "cucumber-js --tags @public",
+    "test:parallel": "cucumber-js --parallel 4",
+    "test:ci": "cucumber-js --tags 'not @skip' --parallel 2",
+    "report:generate": "allure generate allure-results --clean -o allure-report",
+    "report:open": "allure open allure-report",
+    "report:serve": "allure serve allure-results",
+    "report:ci": "allure generate allure-results --clean -o allure-report",
+    "lint": "eslint src --ext .ts",
+    "type-check": "tsc --noEmit",
+    "clean": "rimraf allure-results allure-report test-results"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "@cucumber/pretty-formatter": "^1.0.1",
+    "@faker-js/faker": "^8.4.1",
+    "@types/node": "^20.12.0",
+    "allure-cucumberjs": "^3.0.3",
+    "allure-js-commons": "^3.0.3",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "playwright": "^1.44.0",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "cucumber": {
+    "default": {
+      "requireModule": ["ts-node/register"],
+      "require": [
+        "src/support/env.ts",
+        "src/support/world.ts",
+        "src/support/hooks.ts",
+        "src/step-definitions/**/*.ts"
+      ],
+      "paths": ["src/features/**/*.feature"],
+      "format": [
+        "progress-bar",
+        "allure-cucumberjs/reporter",
+        "json:test-results/cucumber-report.json"
+      ],
+      "formatOptions": {
+        "allure-cucumberjs/reporter": {
+          "resultsDir": "allure-results",
+          "categories": "allure-results/categories.json"
+        }
+      },
+      "publishQuiet": true
+    }
+  }
+}

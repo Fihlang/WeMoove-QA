@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Product Defects",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*AssertionError.*|.*Expected.*|.*toBeVisible.*|.*toHaveURL.*"
+  },
+  {
+    "name": "Test Defects",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*Error.*|.*Cannot read.*|.*undefined.*|.*null.*"
+  },
+  {
+    "name": "Flaky Tests",
+    "matchedStatuses": ["failed", "broken"],
+    "messageRegex": ".*timeout.*|.*Timeout.*|.*ETIMEDOUT.*|.*net::ERR.*"
+  },
+  {
+    "name": "Navigation Errors",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*toHaveURL.*|.*waitForURL.*|.*waitForNavigation.*"
+  },
+  {
+    "name": "Element Not Found",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*toBeVisible.*|.*waitFor.*state.*visible.*|.*not.*found.*"
+  },
+  {
+    "name": "API Failures",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*API.*failed.*status.*|.*axios.*|.*network.*"
+  }
+]
